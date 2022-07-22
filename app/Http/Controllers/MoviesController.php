@@ -39,14 +39,13 @@ class MoviesController extends Controller
 
     public function update(Request $request, $id)
     {
-            $data = [
-                 'name' => $request->name,
-                 'age_classification'=>$request->age_classification,
-                 'duration'=>$request->duration,
-                  
-            ];
-            Movie::where('id',$id)->update($data);
-            return redirect()->route('movies-index');
+        $data = [
+            'name' => $request->name,
+            'age_classification'=>$request->age_classification,
+            'duration'=>$request->duration,
+        ];
+        Movie::where('id',$id)->update($data);
+        return redirect()->route('movies-index');
         }
     public function destroy($id)
     {

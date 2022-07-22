@@ -38,10 +38,9 @@ class CinesController extends Controller
 
     public function update(Request $request, $id)
     {
-         $data = [
-              'name' => $request->name,
-               
-         ];
+        $data = [
+            'name' => $request->name,     
+        ];
         Cine::where('id',$id)->update($data);
         return redirect()->route('cines-index');
     }

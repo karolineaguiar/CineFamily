@@ -38,13 +38,12 @@ class MovieTheatersController extends Controller
     public function update(Request $request, $id)
     {
         $data = [
-             'name' => $request->name,
-             'cine_id'=>$request->cine_id,
-              
+            'name' => $request->name,
+            'cine_id'=>$request->cine_id,
         ];
         MovieTheater::where('id',$id)->update($data);
        return redirect()->route('movieTheaters-index');
-   }
+    }
 
     public function destroy($id)
     {

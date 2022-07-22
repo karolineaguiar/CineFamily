@@ -18,6 +18,4 @@ class GenresController extends Controller
         Genre::create($request-> all());
         return redirect()->route('genres-index');
     }
-
-
 }
