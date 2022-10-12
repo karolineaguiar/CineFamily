@@ -19,9 +19,7 @@ class CreateMovies extends Migration
             $table->bigInteger('age_classification');
             $table->time('duration');
             $table->unsignedBigInteger('genre_id');
-            $table->unsignedBigInteger('cine_id');
             $table->foreign('genre_id')->references('id')->on('genres');
-            $table->foreign('cine_id')->references('id')->on('cines');
             $table->timestamps();
         });
     }

@@ -15,4 +15,9 @@ class MovieTheater extends Model
     {
        return $this->belongsTo(Cine::class, 'cine_id');
     }
+
+    public function cines()
+    {
+        return $this->belongsToMany(Cine::class);
+    }
 }

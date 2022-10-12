@@ -13,11 +13,15 @@ class TimesReservationsController extends Controller
     public function index()
     {
         $timeReservations = TimeReservation::all();
-        $movieTheaters = MovieTheater::all();
         $movies = Movie::all();
         $cines = Cine::all();
+        $timeReservationss = TimeReservation::all()->groupBy('cine.name');
+        $movieTheaters = MovieTheater::all();
+        $manha = TimeReservation::where(('time'), '<', '12:00:00')->get();
+        $tarde = TimeReservation::where(('time'), '>=', '12:00:00')->get();
 
-        return view('timeReservations.index', compact('timeReservations', 'movieTheaters', 'movies', 'cines' ));
+
+        return view('timeReservations.index', compact('timeReservations', 'movieTheaters', 'movies', 'cines','manha', 'tarde','timeReservationss' ));
     }
 
     public function create()

@@ -4,16 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Models\MovieTheater;
 use App\Models\Cine;
+use App\Models\Movie;
 use Illuminate\Http\Request;
 
 class MovieTheatersController extends Controller
 {
     public function index()
     {
-        $movieTheaters = MovieTheater::all();
         $cines = Cine::all();
-        return view('movieTheaters.index', compact('movieTheaters','cines'));
+        $movieTheaters = MovieTheater::all();
+        $movieTheaterss = MovieTheater::all()->groupBy('cine.name');
+
+        return view('movieTheaters.index', compact('cines','movieTheaters','movieTheaterss'));
     }
+
+    public function search(Request $request)
+    {
+        $name = $request->name;
+        $cine = Cine::where('name', 'like', "%$name%")->first();
+        $movieTheaters = $cine-> movieTheater;
+        return view('movies.index', compact('movieTheaters'));
+    }
+
 
     public function create()
     {

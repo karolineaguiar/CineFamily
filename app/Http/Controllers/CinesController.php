@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cine;
+use App\Models\Movie;
 use Illuminate\Http\Request;
 
 class CinesController extends Controller
@@ -13,10 +14,15 @@ class CinesController extends Controller
         return view('cines.index', compact('cines'));
     }
 
-    public function listagem()
+    public function search(Request $request)
     {
-        $cines = Cine::all();
-        return view('cines.listagem', compact('cines'));
+        $name = $request->name;
+
+        $movie = Movie::where('name', 'like', "%$name%")->first();
+
+        $cines = $movie-> cines;
+
+        return view('cines.index', compact('cines'));
     }
 
     public function create()

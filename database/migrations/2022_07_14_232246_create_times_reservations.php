@@ -34,6 +34,6 @@ class CreateTimesReservations extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('times_reservations');
+        Schema::dropIfExists('time_reservations');
     }
 }

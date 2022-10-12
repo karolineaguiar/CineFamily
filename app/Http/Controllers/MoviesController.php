@@ -12,8 +12,15 @@ class MoviesController extends Controller
     public function index()
     {
         $movies = Movie::all();
-        return view('movies.index', compact('movies'));
-    }
+        $genres = Genre::all();
+        $asc = Movie::orderBy('name',  'ASC')->get();
+        $desc = Movie::orderBy('name', 'DESC')->get();
+        $age = Movie::where('age_classification','<', 14)->get();
+        $duration = Movie::where(('duration'), '=', '02:00:00')->get();
+        $terror = Movie::where(('genre_id'), '!=', 4)->get(); 
+        return view('movies.index', compact('movies', 'genres','asc', 'desc','age', 'duration', 'terror' ));
+    }   
+    
 
     public function create()
     {
@@ -53,3 +60,8 @@ class MoviesController extends Controller
         return redirect()->route('movies-index');
     }
 }
+
+
+        // $order = $this->request->get('order', 'ASC');
+        // $by = $this->request->get('by', 'name');
+        // $listsAsc = $this->listAsc->orderBy($by, $order)->paginate();
